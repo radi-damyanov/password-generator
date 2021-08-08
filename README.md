@@ -1,4 +1,4 @@
-# password-generator
+# Password Generator Application
 This is a simple password generator app, which on this point only generates strong passwords. 
 
 These passwords include: upper and lower case characters, numbers and special characters. 
