@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from ctypes import alignment
 from tkinter import *
 import string 
 import random
