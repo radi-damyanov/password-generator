@@ -7,7 +7,7 @@ import pyperclip
 
 # pass gen function
 
-password_chars = string.ascii_letters + string.digits + string.punctuation
+password_chars = string.ascii_letters
 
 def password_generator():
     password_field.delete(0, END)
@@ -19,6 +19,48 @@ def password_generator():
         pyperclip.copy(password)
     else:
         password_field.insert(0, "Please enter a natural number!")
+
+# button functions
+
+s_button_count = 0
+n_button_count = 0
+
+def symbols_button():
+    global password_chars
+    global n_button_count
+    global s_button_count
+    s_button_count += 1
+
+    if s_button_count % 2 != 0:
+        toggle_symbols_button.config(bg = "#00d100")
+        password_chars = password_chars + string.punctuation
+    
+    else:
+        toggle_symbols_button.config(bg = "#ff3e30")
+        if n_button_count % 2 != 0:
+            password_chars = string.ascii_letters + string.digits
+        
+        else:
+            password_chars = string.ascii_letters
+
+def numbers_button():
+    global password_chars
+    global s_button_count
+    global n_button_count
+
+    n_button_count += 1
+
+    if n_button_count % 2 != 0:
+        toggle_numbers_button.config(bg = "#00d100")
+        password_chars = password_chars + string.digits
+    
+    else:
+        toggle_numbers_button.config(bg = "#ff3e30")
+        if s_button_count % 2 != 0:
+            password_chars = string.ascii_letters + string.punctuation
+        
+        else:
+            password_chars = string.ascii_letters
 
 # theme switcher function
 
@@ -119,6 +161,26 @@ theme_switch_button = Button(text = "☀️",
     justify = CENTER)
 
 theme_switch_button.grid(row = 4, column = 0, pady = 50)
+
+toggle_symbols_button = Button(text = "Symbols",
+    bg = "#ff3e30",
+    height = 1, 
+    width = 6,
+    font = ("Arial", 15, "bold"),
+    command = symbols_button,
+    justify = CENTER)
+
+toggle_symbols_button.grid(row = 4, column = 1, pady = 50)
+
+toggle_numbers_button = Button(text = "Numbers",
+    bg = "#ff3e30",
+    height = 1, 
+    width = 6,
+    font = ("Arial", 15, "bold"),
+    command = numbers_button,
+    justify = CENTER)
+
+toggle_numbers_button.grid(row = 4, column = 2, pady = 50)
 
 window.resizable(False, False)
 
