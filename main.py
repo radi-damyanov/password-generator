@@ -5,7 +5,7 @@ import string
 import random
 import pyperclip
 
-# pass gen
+# pass gen function
 
 password_chars = string.ascii_letters + string.digits + string.punctuation
 
@@ -19,6 +19,35 @@ def password_generator():
         pyperclip.copy(password)
     else:
         password_field.insert(0, "Please enter a natural number!")
+
+# theme switcher function
+
+def lighton_button():
+    nightmode_color = "#383e56"
+    nightmode_text = "#c5d7bd"
+
+    lightmode_color = "#cccccc"
+    lightmode_text = "#000000"
+
+    window.config(bg = lightmode_color)
+
+    label_title.config(bg = lightmode_color, fg = lightmode_text)
+
+    label_before_input.config(bg = lightmode_color, fg = lightmode_text)
+
+    label_afrer_input.config(bg = lightmode_color, fg = lightmode_text)
+
+def darkon_button():
+    nightmode_color = "#383e56"
+    nightmode_text = "#c5d7bd"
+
+    window.config(bg = nightmode_color)
+
+    label_title.config(bg = nightmode_color, fg = nightmode_text)
+
+    label_before_input.config(bg = nightmode_color, fg = nightmode_text)
+
+    label_afrer_input.config(bg = nightmode_color, fg = nightmode_text)
 
 # UI
 
@@ -67,6 +96,24 @@ password_field = Entry(bg = "#999999",
     justify = CENTER)
 
 password_field.grid(row = 3, column = 0, columnspan = 3)
+
+light_mode_button = Button(text = "Light Mode",
+    bg = "#00a13f",
+    height = 2,
+    width = 10,
+    font = ("Arial", 10, "bold"),
+    command = lighton_button)
+
+light_mode_button.grid(row = 4, column = 0, padx = 50, pady = 50)
+
+dark_mode_button = Button(text = "Dark Mode",
+    bg = "#00a13f",
+    height = 2,
+    width = 10,
+    font = ("Arial", 10, "bold"),
+    command = darkon_button)
+
+dark_mode_button.grid(row = 4, column = 1,padx = 50, pady = 50)
 
 window.resizable(False, False)
 
