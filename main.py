@@ -11,10 +11,14 @@ password_chars = string.ascii_letters + string.digits + string.punctuation
 
 def password_generator():
     password_field.delete(0, END)
-    length = int(char_input.get())
-    password = "".join([random.choice(password_chars) for _ in range(length)])
-    password_field.insert(0, password)
-    pyperclip.copy(password)
+    length = char_input.get()
+    if (length.isdigit()) and (length > "0"):
+        length = int(length)
+        password = "".join([random.choice(password_chars) for _ in range(length)])
+        password_field.insert(0, password)
+        pyperclip.copy(password)
+    else:
+        password_field.insert(0, "Please enter a natural number!")
 
 # UI
 
