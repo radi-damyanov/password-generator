@@ -66,15 +66,19 @@ def numbers_button():
 
 i = 0
 
+nightmode_color = "#222222"
+nightmode_text = "#c5d7bd"
+nightmode_button = "#4169e1"
+
+lightmode_color = "#DEE4E7"
+lightmode_text = "#000000"
+lightmode_button = "#7cbcff"
+
 def theme_button():
     global i
     i += 1
 
     if i % 2 == 0:
-        nightmode_color = "#222222"
-        nightmode_text = "#c5d7bd"
-        nightmode_button = "#4169e1"
-
         window.config(bg = nightmode_color)
 
         label_title.config(bg = nightmode_color, fg = nightmode_text)
@@ -88,10 +92,6 @@ def theme_button():
         theme_switch_button.config(text = "☀️", bg = nightmode_button)
 
     else:
-        lightmode_color = "#DEE4E7"
-        lightmode_text = "#000000"
-        lightmode_button = "#7cbcff"
-
         window.config(bg = lightmode_color)
 
         label_title.config(bg = lightmode_color, fg = lightmode_text)
@@ -108,18 +108,18 @@ def theme_button():
 
 window = Tk()
 window.title("Password Generator")
-window.config(padx = 50, pady = 50, bg = "#222222")
+window.config(padx = 50, pady = 50, bg = nightmode_color)
 
 label_title = Label(text = "Password Generator",
-    bg = "#222222",
-    fg = "#c5d7bd",
+    bg = nightmode_color,
+    fg = nightmode_text,
     font = ("Arial", 35, "bold"))
 
 label_title.grid(row = 0, column = 0, columnspan = 3, pady = 30)
 
 label_before_input = Label(text = "I want a password with",
-    bg = "#222222",
-    fg = "#c5d7bd",
+    bg = nightmode_color,
+    fg = nightmode_text,
     font = ("Arial", 15, "bold"))
 
 label_before_input.grid(row = 1, column = 0)
@@ -130,14 +130,14 @@ char_input.insert(0, "12")
 char_input.focus()
 
 label_afrer_input = Label(text = "characters",
-    bg = "#222222",
-    fg = "#c5d7bd",
+    bg = nightmode_color,
+    fg = nightmode_text,
     font = ("Arial", 15, "bold"))
 
 label_afrer_input.grid(row = 1, column = 2)
 
 generate_password_button = Button(text = "Generate Password & Copy to Clipboard",
-    bg = "#4169e1",
+    bg = nightmode_button,
     height = 4,
     width = 55,
     font = ("Arial", 10, "bold"),
@@ -153,7 +153,7 @@ password_field = Entry(bg = "#999999",
 password_field.grid(row = 3, column = 0, columnspan = 3)
 
 theme_switch_button = Button(text = "☀️",
-    bg = "#4169e1",
+    bg = nightmode_button,
     height = 1,
     width = 5,
     font = ("Arial", 15, "bold"),
