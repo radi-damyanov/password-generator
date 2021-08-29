@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from variables import *
 from tkinter import *
 import string 
 import random
@@ -22,9 +23,6 @@ def password_generator():
 
 # button functions
 
-s_button_count = 0
-n_button_count = 0
-
 def symbols_button():
     global password_chars
     global n_button_count
@@ -32,11 +30,11 @@ def symbols_button():
     s_button_count += 1
 
     if s_button_count % 2 != 0:
-        toggle_symbols_button.config(bg = "#00d100")
+        toggle_symbols_button.config(bg = green_button)
         password_chars = password_chars + string.punctuation
     
     else:
-        toggle_symbols_button.config(bg = "#ff3e30")
+        toggle_symbols_button.config(bg = red_button)
         if n_button_count % 2 != 0:
             password_chars = string.ascii_letters + string.digits
         
@@ -51,11 +49,11 @@ def numbers_button():
     n_button_count += 1
 
     if n_button_count % 2 != 0:
-        toggle_numbers_button.config(bg = "#00d100")
+        toggle_numbers_button.config(bg = green_button)
         password_chars = password_chars + string.digits
     
     else:
-        toggle_numbers_button.config(bg = "#ff3e30")
+        toggle_numbers_button.config(bg = red_button)
         if s_button_count % 2 != 0:
             password_chars = string.ascii_letters + string.punctuation
         
@@ -64,21 +62,11 @@ def numbers_button():
 
 # theme switcher function
 
-i = 0
-
-nightmode_color = "#222222"
-nightmode_text = "#c5d7bd"
-nightmode_button = "#4169e1"
-
-lightmode_color = "#DEE4E7"
-lightmode_text = "#000000"
-lightmode_button = "#7cbcff"
-
 def theme_button():
-    global i
-    i += 1
+    global t_button_count
+    t_button_count += 1
 
-    if i % 2 == 0:
+    if t_button_count % 2 == 0:
         window.config(bg = nightmode_color)
 
         label_title.config(bg = nightmode_color, fg = nightmode_text)
@@ -113,18 +101,18 @@ window.config(padx = 50, pady = 50, bg = nightmode_color)
 label_title = Label(text = "Password Generator",
     bg = nightmode_color,
     fg = nightmode_text,
-    font = ("Arial", 35, "bold"))
+    font = (font, 35, "bold"))
 
 label_title.grid(row = 0, column = 0, columnspan = 3, pady = 30)
 
 label_before_input = Label(text = "I want a password with",
     bg = nightmode_color,
     fg = nightmode_text,
-    font = ("Arial", 15, "bold"))
+    font = (font, 15, "bold"))
 
 label_before_input.grid(row = 1, column = 0)
 
-char_input = Entry(bg = "#999999", justify = CENTER, font = ("Arial", 10, "bold"))
+char_input = Entry(bg = input_field_color, justify = CENTER, font = (font, 10, "bold"))
 char_input.grid(row = 1, column = 1)
 char_input.insert(0, "12")
 char_input.focus()
@@ -132,7 +120,7 @@ char_input.focus()
 label_afrer_input = Label(text = "characters",
     bg = nightmode_color,
     fg = nightmode_text,
-    font = ("Arial", 15, "bold"))
+    font = (font, 15, "bold"))
 
 label_afrer_input.grid(row = 1, column = 2)
 
@@ -140,13 +128,13 @@ generate_password_button = Button(text = "Generate Password & Copy to Clipboard"
     bg = nightmode_button,
     height = 4,
     width = 55,
-    font = ("Arial", 10, "bold"),
+    font = (font, 10, "bold"),
     command = password_generator)
 
 generate_password_button.grid(row = 2, column = 0, columnspan = 3, padx = 50, pady = 50)
 
-password_field = Entry(bg = "#999999",
-    font = ("Arial", 15, "bold"), 
+password_field = Entry(bg = input_field_color,
+    font = (font, 15, "bold"), 
     width = 40,
     justify = CENTER)
 
@@ -156,27 +144,27 @@ theme_switch_button = Button(text = "☀️",
     bg = nightmode_button,
     height = 1,
     width = 5,
-    font = ("Arial", 15, "bold"),
+    font = (font, 15, "bold"),
     command = theme_button,
     justify = CENTER)
 
 theme_switch_button.grid(row = 4, column = 0, pady = 50)
 
 toggle_symbols_button = Button(text = "Symbols",
-    bg = "#ff3e30",
+    bg = red_button,
     height = 1, 
     width = 6,
-    font = ("Arial", 15, "bold"),
+    font = (font, 15, "bold"),
     command = symbols_button,
     justify = CENTER)
 
 toggle_symbols_button.grid(row = 4, column = 1, pady = 50)
 
 toggle_numbers_button = Button(text = "Numbers",
-    bg = "#ff3e30",
+    bg = red_button,
     height = 1, 
     width = 6,
-    font = ("Arial", 15, "bold"),
+    font = (font, 15, "bold"),
     command = numbers_button,
     justify = CENTER)
 
